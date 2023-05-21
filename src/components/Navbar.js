@@ -1,16 +1,14 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-function changeTitle()
-{
-    document.title ="Textutils | About";
+function changeTitle() {
+  document.title = "Textutils | About";
 }
 
 function changeBackTitle() {
   document.title = "Textutils";
 }
-
 
 function Navbar(props) {
   return (
@@ -29,7 +27,7 @@ function Navbar(props) {
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="/navbarNav"
+          data-bs-target="#navbarNav"
           aria-controls="navbarNav"
           aria-expanded="false"
           aria-label="Toggle navigation"
@@ -39,9 +37,14 @@ function Navbar(props) {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link className={`nav-link text-${
-            props.mode === "light bg-primary-subtle" ? "dark" : "light"
-          }`} aria-current="page" to="/about" onClick={changeTitle}>
+              <Link
+                className={`nav-link text-${
+                  props.mode === "light bg-primary-subtle" ? "dark" : "light"
+                }`}
+                aria-current="page"
+                to="/about"
+                onClick={changeTitle}
+              >
                 {props.subTitle1}
               </Link>
             </li>
