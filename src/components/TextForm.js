@@ -32,6 +32,12 @@ export default function TextForm(props) {
     navigator.clipboard.writeText(text.value);
   }
 
+  function removeExtraSpaces()
+  {
+    let newText = Text.split(/[ ]+/);
+    setText(newText.join(" "));
+  }
+
   var totalWords = Text.split(/\s+/).length;
   const timeTaken = 120;
   function calculateWPM(totalWords, timeTaken) {
@@ -51,8 +57,23 @@ export default function TextForm(props) {
           color: props.mode === "dark" ? "white" : "black",
         }}
       >
-        <div>
-          <h1 style={{ display: "inline" }}>{props.heading}</h1>
+        <div className="container">
+          <div className="row">
+            <div className="col text-start">
+              <div>
+                <h1 style={{ display: "inline" }}>{props.heading}</h1>
+              </div>
+            </div>
+            <div className="col text-end">
+              <button
+                style={{ display: "inline" }}
+                className="btn copy btn-primary my-2 "
+                onClick={handleTextCopy}
+              >
+                &#128203;
+              </button>
+            </div>
+          </div>
         </div>
 
         <div className="my-4">
@@ -71,42 +92,47 @@ export default function TextForm(props) {
             }}
           ></textarea>
 
-          <button
-            className="btn toupper btn-outline-primary my-3"
-            disabled={Text.length === 0}
-            onClick={handleUpperConversion}
-          >
-            Convert to Uppercase
-          </button>
-          {/* <button
-                className="btn btn-outline-primary my-3 mx-3"
-                onClick={handlecamelCase}
-                >
-                Convert to Capitalized case
-                </button> */}
-          <button
-            className="btn tolower btn-outline-primary my-3 "
-            disabled={Text.length === 0}
-            onClick={handleLowerConversion}
-          >
-            Convert to Lowercase
-          </button>
+          <div className="container">
+            <span className="upper">
+              <button
+                className="btn btn-outline-primary my-3"
+                disabled={Text.length === 0}
+                onClick={handleUpperConversion}
+              >
+                Convert to Uppercase
+              </button>
+            </span>
 
-          <button
-            style={{ display: "inline" }}
-            className="btn copy btn-primary my-2"
-            onClick={handleTextCopy}
-          >
-            &#128203;
-          </button>
+            <span className="lower">
+              <button
+                className="btn btn-outline-primary my-3 "
+                disabled={Text.length === 0}
+                onClick={handleLowerConversion}
+              >
+                Convert to Lowercase
+              </button>
+            </span>
 
-          <button
-            className="btn clear btn-danger my-3 mx-3"
-            disabled={Text.length === 0}
-            onClick={handleClearText}
-          >
-            Clear Text
-          </button>
+            <span className="spacesRemoved">
+              <button
+                className="btn  btn-outline-primary my-3 "
+                disabled={Text.length === 0}
+                onClick={removeExtraSpaces}
+              >
+                Remove extra spaces
+              </button>
+            </span>
+
+            <span className="clear">
+              <button
+                className="btn clear btn-danger my-3 mx-3"
+                disabled={Text.length === 0}
+                onClick={handleClearText}
+              >
+                Clear Text
+              </button>
+            </span>
+          </div>
         </div>
 
         <div className="container my-5">

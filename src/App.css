@@ -37,10 +37,28 @@
   }
 }
 
-.btn {
+.upper .btn  {
   border-radius: 1.2rem !important;
   margin-left: 1rem !important;
-  margin-right: 11rem !important;
+  margin-right: 13.9rem !important;
+}
+
+.lower .btn  {
+  border-radius: 1.2rem !important;
+  margin-left: 1rem !important;
+  margin-right: 14.1rem !important;
+}
+
+.spacesRemoved .btn  {
+  border-radius: 1.2rem !important;
+  margin-left: 1rem !important;
+  margin-right: 13.9rem !important;
+}
+
+.clear .btn  {
+  border-radius: 1.2rem !important;
+  margin-left: 1rem !important;
+  margin-right: 13.9rem !important;
 }
 
 .container {
@@ -72,6 +90,11 @@
   margin-top: 1.5rem !important;
 }
 
+
+.col .text-end
+{
+  margin-left: 80% !important;
+}
 
 .navbar-toggler::after
 {
