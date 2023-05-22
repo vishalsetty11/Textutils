@@ -25,18 +25,7 @@ export default function TextForm(props) {
     setText("");
   }
 
-  /* function handlecamelCase (Text) 
-    {
-      const words = Text.split(" ");
-      const capitalizedWords = words.map((word) => {
-        const firstLetter = word.charAt(0).toUpperCase();
-        const restOfWord = word.slice(1).toLowerCase();
-        return firstLetter + restOfWord;
-      });
-      return capitalizedWords.join(" ");
-    }
- */
-
+  
   function handleTextCopy() {
     var text = document.getElementById("exampleFormControlTextarea1");
     text.select();
@@ -51,6 +40,9 @@ export default function TextForm(props) {
     return wpm;
   }
   const wpm = calculateWPM(totalWords, timeTaken);
+
+ 
+
   return (
     <>
       <div
@@ -81,6 +73,7 @@ export default function TextForm(props) {
 
           <button
             className="btn toupper btn-outline-primary my-3"
+            disabled={Text.length === 0}
             onClick={handleUpperConversion}
           >
             Convert to Uppercase
@@ -93,6 +86,7 @@ export default function TextForm(props) {
                 </button> */}
           <button
             className="btn tolower btn-outline-primary my-3 "
+            disabled={Text.length === 0}
             onClick={handleLowerConversion}
           >
             Convert to Lowercase
@@ -100,7 +94,7 @@ export default function TextForm(props) {
 
           <button
             style={{ display: "inline" }}
-            className="btn copy btn-primary "
+            className="btn copy btn-primary my-2"
             onClick={handleTextCopy}
           >
             &#128203;
@@ -108,6 +102,7 @@ export default function TextForm(props) {
 
           <button
             className="btn clear btn-danger my-3 mx-3"
+            disabled={Text.length === 0}
             onClick={handleClearText}
           >
             Clear Text
@@ -118,17 +113,33 @@ export default function TextForm(props) {
           <h4>Text Summary:</h4>
           <div>WPM: {wpm}</div>
           <div>
-            {Text.length} letters and {Text.split(" ").length} words.
+            {Text.length} letters and{" "}
+            {
+              Text.split(" ").filter((element) => {
+                return element.length !== 0;
+              }).length
+            }{" "}
+            words.
           </div>
           <div>
-            {(Text.split(" ").length / 183).toFixed(0)} minutes of reading time.
+            {(
+              0.008 *
+              Text.split(" ").filter((element) => {
+                return element.length !== 0;
+              }).length
+            ).toFixed(2)}{" "}
+            minutes of reading time.
           </div>
         </div>
 
         <div className="container my-5">
-          <h4>Preview:</h4>
           <p className="preview">
-            {Text.length > 0 ? Text : "Enter something to preview."}
+            {Text.length > 0 ? <h4>Preview:</h4> : null}
+            {Text.length > 0 ? (
+              <span dangerouslySetInnerHTML={{ __html: Text }}></span>
+            ) : (
+              <h4>Nothing to Preview!</h4>
+            )}
           </p>
         </div>
       </div>
