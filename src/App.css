@@ -71,3 +71,9 @@
 .container {
   margin-top: 1.5rem !important;
 }
+
+
+.navbar-toggler::after
+{
+  filter: invert(2);
+}

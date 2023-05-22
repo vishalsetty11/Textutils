@@ -32,7 +32,7 @@ export default function TextForm(props) {
     navigator.clipboard.writeText(text.value);
   }
 
-  var totalWords = Text.split(" ").length;
+  var totalWords = Text.split(/\s+/).length;
   const timeTaken = 120;
   function calculateWPM(totalWords, timeTaken) {
     const minutes = timeTaken / 60; // Convert time taken to minutes
@@ -115,7 +115,7 @@ export default function TextForm(props) {
           <div>
             {Text.length} letters and{" "}
             {
-              Text.split(" ").filter((element) => {
+              Text.split(/\s+/).filter((element) => {
                 return element.length !== 0;
               }).length
             }{" "}
@@ -124,7 +124,7 @@ export default function TextForm(props) {
           <div>
             {(
               0.008 *
-              Text.split(" ").filter((element) => {
+              Text.split(/\s+/).filter((element) => {
                 return element.length !== 0;
               }).length
             ).toFixed(2)}{" "}
